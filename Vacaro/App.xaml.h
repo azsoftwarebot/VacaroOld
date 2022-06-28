@@ -2,7 +2,7 @@
 
 #include "App.xaml.g.h"
 
-namespace winrt::Vacaro_Editor::implementation
+namespace winrt::Vacaro::implementation
 {
     struct App : AppT<App>
     {

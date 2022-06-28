@@ -1,5 +1,5 @@
 ========================================================================
-    Vacaro.Editor Project Overview
+    Vacaro Project Overview
 ========================================================================
 
 This project demonstrates how to get started writing WinUI3 apps directly

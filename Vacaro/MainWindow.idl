@@ -1,4 +1,4 @@
-namespace Vacaro_Editor
+namespace Vacaro
 {
     [default_interface]
     runtimeclass MainWindow : Microsoft.UI.Xaml.Window

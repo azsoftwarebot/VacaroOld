@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Vacaro.Launcher (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Vacaro.Launcher (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

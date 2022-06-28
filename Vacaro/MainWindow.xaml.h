@@ -2,7 +2,7 @@
 
 #include "MainWindow.g.h"
 
-namespace winrt::Vacaro_Editor::implementation
+namespace winrt::Vacaro::implementation
 {
     struct MainWindow : MainWindowT<MainWindow>
     {
@@ -15,7 +15,7 @@ namespace winrt::Vacaro_Editor::implementation
     };
 }
 
-namespace winrt::Vacaro_Editor::factory_implementation
+namespace winrt::Vacaro::factory_implementation
 {
     struct MainWindow : MainWindowT<MainWindow, implementation::MainWindow>
     {
