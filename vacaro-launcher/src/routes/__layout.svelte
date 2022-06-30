@@ -21,6 +21,7 @@
 		SideNavDivider
 	} from 'carbon-components-svelte';
 	import { onMount } from 'svelte';
+	import { appWindow } from '@tauri-apps/api/window';
 
 	import WindowMinimizeButton from '../components/icon/WindowMinimizeButton.svelte';
 	import WindowCloseButton from '../components/icon/WindowCloseButton.svelte';
@@ -54,12 +55,15 @@
 		document.documentElement.setAttribute('theme', themeKey);
 	});
 
-	// import { appWindow } from '@tauri-apps/api/window';
 
 	function closeApp() {
-		onMount(() => {
-			// appWindow.close();
-		});
+		appWindow.close();
+	}
+	function minimizeApp() {
+		appWindow.minimize();
+	}
+	function maximizeApp() {
+		appWindow.maximize();
 	}
 
 	function themeChange() {
@@ -164,8 +168,18 @@
 			style="width=100%; margin-left: 20px; margin-right: 1.5px; height=100%"
 			data-tauri-drag-region={true}
 		>
-			<HeaderGlobalAction aria-label="Minimize" class="utilbutton" icon={WindowMinimizeButton} />
-			<HeaderGlobalAction aria-label="Maximize" class="utilbutton" icon={WindowMaximizeButton} />
+			<HeaderGlobalAction
+				aria-label="Minimize"
+				on:click={minimizeApp}
+				class="utilbutton"
+				icon={WindowMinimizeButton}
+			/>
+			<HeaderGlobalAction
+				aria-label="Maximize"
+				on:click={maximizeApp}
+				class="utilbutton"
+				icon={WindowMaximizeButton}
+			/>
 			<HeaderGlobalAction
 				on:click={closeApp}
 				aria-label="Close"

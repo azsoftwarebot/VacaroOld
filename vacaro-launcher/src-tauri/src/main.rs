@@ -3,13 +3,11 @@
   windows_subsystem = "windows"
 )]
 
-// fn main() {
-//   let context = tauri::generate_context!();
-//   tauri::Builder::default()
-//     .menu(tauri::Menu::os_default(&context.package_info().name))
-//     .run(context)
-//     .expect("error while running tauri application");
-// }
+// use window_vibrancy::{apply_blur, apply_vibrancy, apply_acrylic,apply_mica, NSVisualEffectMaterial};
+// Set transparency to true in tauri configuration
+// #[cfg(target_os = "windows")]
+// apply_mica(&window).expect("Unsupported platform! 'apply_blur' is only supported on Windows");
+// apply_acrylic(&window, Some((18, 18, 18, 125))).expect("Unsupported platform! 'apply_blur' is only supported on Windows");
 
 fn main() {
   let context = tauri::generate_context!();
