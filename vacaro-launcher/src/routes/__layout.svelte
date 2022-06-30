@@ -1,4 +1,5 @@
 <script lang="ts">
+	import 'carbon-components-svelte/css/all.css';
 	import {
 		Header,
 		HeaderNav,
@@ -20,18 +21,17 @@
 		SideNavDivider
 	} from 'carbon-components-svelte';
 	import { onMount } from 'svelte';
+
 	import WindowMinimizeButton from '../components/icon/WindowMinimizeButton.svelte';
 	import WindowCloseButton from '../components/icon/WindowCloseButton.svelte';
 
 	import WindowMaximizeButton from '../components/icon/WindowMaximizeButton.svelte';
 
-	// import CheckboxUndeterminate from 'carbon-icons-svelte/lib/Checkbox.svelte';
+	import WindowRestoreButton from '../components/icon/WindowRestoreButton.svelte';
 
-	import CheckBox from 'carbon-icons-svelte/lib/CheckBox.svelte';
+	import WindowMenuIconButton from '../components/icon/WindowMenuIconButton.svelte';
+
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
-	import Close from 'carbon-icons-svelte/lib/Close.svelte';
-	import Minimize from 'carbon-icons-svelte/lib/Minimize.svelte';
-	import Maximize from 'carbon-icons-svelte/lib/Maximize.svelte';
 	import MoonThemeSwitchIcon from 'carbon-icons-svelte/lib/Moon.svelte';
 	import SunThemeSwitchIcon from 'carbon-icons-svelte/lib/Sun.svelte';
 	import Fade from 'carbon-icons-svelte/lib/Fade.svelte';
@@ -44,15 +44,12 @@
 
 	var themeBool = new Boolean(false);
 	let themeKey = 'g10';
-	let themeBackground = 'filter: invert(-1);';
 
 	onMount(() => {
 		if (themeBool == true) {
 			themeKey = 'g10';
-			themeBackground = 'filter: invert(-1);';
 		} else if (themeBool == false) {
 			themeKey = 'g90';
-			themeBackground = 'filter: invert(1);';
 		}
 		document.documentElement.setAttribute('theme', themeKey);
 	});
@@ -71,40 +68,31 @@
 
 		if (themeBool == true) {
 			themeKey = 'g10';
-			themeBackground = 'filter: invert(-1);';
 		} else if (themeBool == false) {
 			themeKey = 'g90';
-			themeBackground = 'filter: invert(1);';
 		}
 		document.documentElement.setAttribute('theme', themeKey);
 	}
 </script>
 
-<svelte:head>
-	<link rel="stylesheet" href="https://unpkg.com/carbon-components-svelte/css/all.css" />
-	{#if themeBool === true}
-		<link rel="stylesheet" href="https://unpkg.com/@carbon/charts/styles-g90.css" />
-	{:else}
-		<link rel="stylesheet" href="https://unpkg.com/@carbon/charts/styles-g10.css" />
-	{/if}
-</svelte:head>
-
 <div>
 	<Header
 		data-tauri-drag-region
 		class="titlebar"
-		company="Tauri"
-		platformName="Carbon App"
+		company="Vacaro"
+		platformName="Launcher"
 		bind:isSideNavOpen
+		iconMenu={WindowMenuIconButton}
+		persistentHamburgerMenu
 	>
 		<svelte:fragment slot="skip-to-content">
 			<SkipToContent />
 		</svelte:fragment>
 
 		<HeaderNav data-tauri-drag-region>
-			<HeaderNavItemHref Href="/" Text="Dashboard" StartsWith="false" />
-			<HeaderNavItemHref Href="/intergrations" Text="Intergrations" StartsWith="false" />
-			<HeaderNavItemHref Href="/demographic" Text="Demographic" StartsWith="true" />
+			<HeaderNavItemHref Href="/" Text="Home" StartsWith="false" />
+			<HeaderNavItemHref Href="/engine" Text="Engine" StartsWith="false" />
+			<HeaderNavItemHref Href="/assets" Text="Assets" StartsWith="true" />
 			<HeaderNavMenu text="Documentation">
 				<HeaderNavItemHref Href="/docs/getting-started" Text="Getting Started" StartsWith="true" />
 				<HeaderNavItemHref
@@ -187,7 +175,8 @@
 		</div>
 	</Header>
 
-	<SideNav rail bind:isOpen={isSideNavOpen} style={themeBackground}>
+	<SideNav bind:isOpen={isSideNavOpen}>
+		<!-- style={themeBackground} -->
 		<SideNavItems>
 			<SideNavLink icon={Fade} text="Link 1" href="/" isSelected />
 			<SideNavLink icon={Fade} text="Link 2" href="/" />
