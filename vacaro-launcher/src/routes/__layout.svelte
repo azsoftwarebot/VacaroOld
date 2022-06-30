@@ -25,11 +25,8 @@
 
 	import WindowMinimizeButton from '../components/icon/WindowMinimizeButton.svelte';
 	import WindowCloseButton from '../components/icon/WindowCloseButton.svelte';
-
 	import WindowMaximizeButton from '../components/icon/WindowMaximizeButton.svelte';
-
 	import WindowRestoreButton from '../components/icon/WindowRestoreButton.svelte';
-
 	import WindowMenuIconButton from '../components/icon/WindowMenuIconButton.svelte';
 
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
@@ -55,7 +52,6 @@
 		document.documentElement.setAttribute('theme', themeKey);
 	});
 
-
 	function closeApp() {
 		appWindow.close();
 	}
@@ -65,7 +61,14 @@
 	function maximizeApp() {
 		appWindow.maximize();
 	}
+	function restoreApp() {
+		appWindow.unmaximize();
+	}
 
+	import GetisMaximized from '../components/MaximizeHandler';
+
+	GetisMaximized();
+	
 	function themeChange() {
 		if (themeBool == true) themeBool = false;
 		else if (themeBool == false) themeBool = true;
@@ -121,7 +124,6 @@
 					icon={SunThemeSwitchIcon}
 				/>
 			{/if}
-
 			<HeaderGlobalAction aria-label="Settings" icon={Settings} />
 			<HeaderAction bind:isOpen data-tauri-drag-region>
 				<HeaderPanelLinks>
@@ -158,7 +160,7 @@
 				fill: transparent !important;
 			}
 			.utilbutton:hover {
-				background-color: #262626;
+				background-color: #616161;
 			}
 			.utilbutton:focus {
 				border: 1px solid solid var(--cds-ui-background);
@@ -174,12 +176,21 @@
 				class="utilbutton"
 				icon={WindowMinimizeButton}
 			/>
-			<HeaderGlobalAction
-				aria-label="Maximize"
-				on:click={maximizeApp}
-				class="utilbutton"
-				icon={WindowMaximizeButton}
-			/>
+			{#if true == true}
+				<HeaderGlobalAction
+					aria-label="Maximize"
+					on:click={maximizeApp}
+					class="utilbutton"
+					icon={WindowMaximizeButton}
+				/>
+			{:else}
+				<HeaderGlobalAction
+					aria-label="Restore"
+					on:click={restoreApp}
+					class="utilbutton"
+					icon={WindowRestoreButton}
+				/>
+			{/if}
 			<HeaderGlobalAction
 				on:click={closeApp}
 				aria-label="Close"
