@@ -59,7 +59,10 @@
 				"height": 600,
 				"resizable": true,
 				"title": "Vacaro Launcher",
-				"width": 800
+				"width": 1060,
+				"decorations": false,
+				"minHeight": 600,
+				"minWidth": 1060
 			}
 		]
 	}
