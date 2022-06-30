@@ -40,7 +40,7 @@
 	let isOpen = false;
 	let isSideNavOpen = false;
 
-	var themeBool = new Boolean(false);
+	var themeBool = new Boolean(true);
 	let themeKey = 'g10';
 
 	onMount(() => {
@@ -68,7 +68,7 @@
 	import GetisMaximized from '../components/MaximizeHandler';
 
 	GetisMaximized();
-	
+
 	function themeChange() {
 		if (themeBool == true) themeBool = false;
 		else if (themeBool == false) themeBool = true;
@@ -200,7 +200,7 @@
 		</div>
 	</Header>
 
-	<SideNav bind:isOpen={isSideNavOpen}>
+	<SideNav rail bind:isOpen={isSideNavOpen}>
 		<!-- style={themeBackground} -->
 		<SideNavItems>
 			<SideNavLink icon={Fade} text="Link 1" href="/" isSelected />
