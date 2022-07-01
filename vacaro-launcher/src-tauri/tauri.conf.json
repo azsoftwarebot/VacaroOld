@@ -4,7 +4,7 @@
 		"beforeDevCommand": "npm run dev",
 		"beforeBuildCommand": "npm run build",
 		"devPath": "http://localhost:8082",
-		"distDir": "../public"
+		"distDir": "../build"
 	},
 	"package": {
 		"productName": "vacaro-launcher",

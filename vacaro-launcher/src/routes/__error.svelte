@@ -1,8 +1,10 @@
 <script context="module">
+	// @ts-ignore
 	export function load({ error, status }) {
 		return {
 			props: {
-				title: `${status}: ${error.message}`
+				title: `${status}`,
+				message: `${error.message}`
 			}
 		};
 	}
@@ -10,9 +12,12 @@
 
 <script>
 	export /**
-* @type {any}
-*/
-	 let title;
+	 * @type {any}
+	 */
+	let title;
+
+	export let message;
 </script>
 
 <h1>{title}</h1>
+<p>{message}</p>

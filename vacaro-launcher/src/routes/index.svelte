@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import {
 		ButtonSet,
 		Button,
@@ -11,12 +11,12 @@
 </script>
 
 <Tile>
-	<!-- <Button
+	<Button
 		kind="ghost"
 		on:click={() => {
 			key++;
 		}}>Reload image</Button
-	> -->
+	>
 	<div class="center">
 		<InlineNotification
 			class="warning-card"
@@ -47,4 +47,6 @@
 
 		<Button>Submit</Button>
 	</ButtonSet>
-</Tile>
+</Tile> -->
+<h1>Welcome to Vacaro</h1>
+<p>Visit <a href="https://github.com/Vacaro">github.com/vacaro</a> to read the documentation</p>

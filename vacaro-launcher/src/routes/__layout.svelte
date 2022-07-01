@@ -32,13 +32,22 @@
 	import Settings from 'carbon-icons-svelte/lib/Settings.svelte';
 	import MoonThemeSwitchIcon from 'carbon-icons-svelte/lib/Moon.svelte';
 	import SunThemeSwitchIcon from 'carbon-icons-svelte/lib/Sun.svelte';
-	import Fade from 'carbon-icons-svelte/lib/Fade.svelte';
+	import LogoGithub from 'carbon-icons-svelte/lib/LogoGithub.svelte';
+	import LogoTwitter from 'carbon-icons-svelte/lib/LogoTwitter.svelte';
+	import LogoDiscord from 'carbon-icons-svelte/lib/LogoDiscord.svelte';
+	import LogoYoutube from 'carbon-icons-svelte/lib/LogoYoutube.svelte';
+	import WatsonHealthAiResultsUrgent from 'carbon-icons-svelte/lib/WatsonHealthAiResultsUrgent.svelte';
+	import InformationSquare from 'carbon-icons-svelte/lib/InformationSquare.svelte';
+	import Share from 'carbon-icons-svelte/lib/Share.svelte';
 	import HeaderNavItemHref from '../components/navigation/HeaderNavItemHref.svelte';
 
+	import WarningModal from '../components/theme/WarningModal.svelte';
 	import ContextMenuLayout from '../components/ContextMenuLayout.svelte';
 
 	let isOpen = false;
 	let isSideNavOpen = false;
+	let isDarkModeModal = false;
+	let isMaximized = false;
 
 	var themeBool = new Boolean(true);
 	let themeKey = 'g10';
@@ -58,11 +67,9 @@
 	function minimizeApp() {
 		appWindow.minimize();
 	}
-	function maximizeApp() {
-		appWindow.maximize();
-	}
-	function restoreApp() {
-		appWindow.unmaximize();
+	function toggleApp() {
+		appWindow.toggleMaximize();
+		isMaximized = !isMaximized;
 	}
 
 	import GetisMaximized from '../components/MaximizeHandler';
@@ -76,6 +83,7 @@
 		if (themeBool == true) {
 			themeKey = 'g10';
 		} else if (themeBool == false) {
+			// isDarkModeModal = true;
 			themeKey = 'g90';
 		}
 		document.documentElement.setAttribute('theme', themeKey);
@@ -90,7 +98,7 @@
 		platformName="Launcher"
 		bind:isSideNavOpen
 		iconMenu={WindowMenuIconButton}
-		persistentHamburgerMenu
+		persistentHamburgerMenu={false}
 	>
 		<svelte:fragment slot="skip-to-content">
 			<SkipToContent />
@@ -138,34 +146,6 @@
 				</HeaderPanelLinks>
 			</HeaderAction>
 		</HeaderUtilities>
-		<style>
-			.closebutton {
-				height: 30px;
-				top: 0;
-				color: white;
-				fill: transparent !important;
-				margin-bottom: 17px;
-			}
-			.closebutton:hover {
-				background-color: #e81123;
-			}
-			.closebutton:focus {
-				border: 1px solid solid var(--cds-ui-background);
-			}
-			.utilbutton {
-				height: 30px;
-				top: 0;
-				margin-bottom: 17px;
-				color: white;
-				fill: transparent !important;
-			}
-			.utilbutton:hover {
-				background-color: #616161;
-			}
-			.utilbutton:focus {
-				border: 1px solid solid var(--cds-ui-background);
-			}
-		</style>
 		<div
 			style="width=100%; margin-left: 20px; margin-right: 1.5px; height=100%"
 			data-tauri-drag-region={true}
@@ -176,17 +156,17 @@
 				class="utilbutton"
 				icon={WindowMinimizeButton}
 			/>
-			{#if true == true}
+			{#if isMaximized == false}
 				<HeaderGlobalAction
 					aria-label="Maximize"
-					on:click={maximizeApp}
+					on:click={toggleApp}
 					class="utilbutton"
 					icon={WindowMaximizeButton}
 				/>
 			{:else}
 				<HeaderGlobalAction
 					aria-label="Restore"
-					on:click={restoreApp}
+					on:click={toggleApp}
 					class="utilbutton"
 					icon={WindowRestoreButton}
 				/>
@@ -203,22 +183,44 @@
 	<SideNav rail bind:isOpen={isSideNavOpen}>
 		<!-- style={themeBackground} -->
 		<SideNavItems>
-			<SideNavLink icon={Fade} text="Link 1" href="/" isSelected />
-			<SideNavLink icon={Fade} text="Link 2" href="/" />
-			<SideNavLink icon={Fade} text="Link 3" href="/" />
-			<SideNavMenu icon={Fade} text="Menu">
-				<SideNavMenuItem href="/" text="Link 1" />
-				<SideNavMenuItem href="/" text="Link 2" />
-				<SideNavMenuItem href="/" text="Link 3" />
+			<SideNavLink
+				icon={LogoGithub}
+				text="Visit GitHub"
+				href="https://github.com/vacaro"
+				target="_blank"
+			/>
+			<!-- isSelected -->
+			<SideNavLink
+				icon={LogoDiscord}
+				text="Join the Discord Server"
+				href="https://discord.gg/M5SncHjSX5"
+				target="_blank"
+			/>
+			<SideNavMenu icon={Share} text="Social Media">
+				<!-- <SideNavMenuItem href="/" text="Link 1" /> -->
+				<SideNavLink href="/" icon={LogoTwitter} text="Open Twitter" />
+				<SideNavLink href="/" icon={LogoYoutube} text="Open Channel" />
+				<SideNavLink href="/" icon={LogoTwitter} text="Twitter" />
 			</SideNavMenu>
 			<SideNavDivider />
-			<SideNavLink icon={Fade} text="Link 4" href="/" />
+			<SideNavLink
+				icon={WatsonHealthAiResultsUrgent}
+				text="Report an Issue"
+				href="https://github.com/Vacaro/Vacaro/issues/new"
+				target="_blank"
+			/><SideNavLink
+				icon={InformationSquare}
+				text="Open Docuemtation"
+				href="https://github.com/Vacaro/Vacaro/issues/new"
+				target="_blank"
+			/>
 		</SideNavItems>
 	</SideNav>
 
 	<ContextMenuLayout />
 
 	<Content>
+		<WarningModal bind:isDarkModeModal bind:themeKey />
 		<slot />
 	</Content>
 
@@ -236,6 +238,32 @@
 		}
 		.titlebar-button:hover {
 			background: #5bbec3;
+		}
+		.closebutton {
+			/* height: 30px; */
+			top: 0;
+			color: white;
+			fill: transparent !important;
+			/* margin-bottom: 17px; */
+		}
+		.closebutton:hover {
+			background-color: #e81123;
+		}
+		.closebutton:focus {
+			border: 1px solid solid var(--cds-ui-background);
+		}
+		.utilbutton {
+			/* height: 30px; */
+			top: 0;
+			/* margin-bottom: 17px; */
+			color: white;
+			fill: transparent !important;
+		}
+		.utilbutton:hover {
+			background-color: #616161;
+		}
+		.utilbutton:focus {
+			border: 1px solid solid var(--cds-ui-background);
 		}
 	</style>
 </div>
