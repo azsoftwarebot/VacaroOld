@@ -16,7 +16,10 @@
 	 */
 	let title;
 
-	export let message;
+	export /**
+	 * @type {any}
+	 */
+	let message;
 </script>
 
 <h1>{title}</h1>
