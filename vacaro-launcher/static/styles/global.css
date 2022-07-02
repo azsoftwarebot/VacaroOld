@@ -6,3 +6,7 @@
 .warning-card {
 	margin-top: -20px;
 }
+
+.bx--side-nav__item.bx--side-nav__item--icon a.bx--side-nav__link {
+	margin-left: -55px;
+}

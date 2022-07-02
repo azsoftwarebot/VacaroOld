@@ -22,6 +22,7 @@
 	} from 'carbon-components-svelte';
 	import { onMount } from 'svelte';
 	import { appWindow } from '@tauri-apps/api/window';
+	import { goto } from '$app/navigation';
 
 	import WindowMinimizeButton from '../components/icon/WindowMinimizeButton.svelte';
 	import WindowCloseButton from '../components/icon/WindowCloseButton.svelte';
@@ -75,6 +76,10 @@
 	import GetisMaximized from '../components/MaximizeHandler';
 
 	GetisMaximized();
+
+	function routeToPage(route: string, replaceState: boolean) {
+		goto(`/${route}`, { replaceState });
+	}
 
 	function themeChange() {
 		if (themeBool == true) themeBool = false;
@@ -132,7 +137,11 @@
 					icon={SunThemeSwitchIcon}
 				/>
 			{/if}
-			<HeaderGlobalAction aria-label="Settings" icon={Settings} />
+			<HeaderGlobalAction
+				aria-label="Settings"
+				on:click={() => routeToPage('settings', false)}
+				icon={Settings}
+			/>
 			<HeaderAction bind:isOpen data-tauri-drag-region>
 				<HeaderPanelLinks>
 					<HeaderPanelDivider>Switcher subject 1</HeaderPanelDivider>
