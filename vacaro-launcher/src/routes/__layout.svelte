@@ -208,7 +208,7 @@
 			<SideNavMenu icon={Share} text="Social Media">
 				<!-- <SideNavMenuItem href="/" text="Link 1" /> -->
 				<SideNavLink href="/" icon={LogoTwitter} text="Open Twitter" />
-				<SideNavLink href="/" icon={LogoYoutube} text="Open Channel" />
+				<SideNavLink href="/" icon={LogoYoutube} text="Open YT Channel" />
 				<SideNavLink href="/" icon={LogoTwitter} text="Twitter" />
 			</SideNavMenu>
 			<SideNavDivider />
