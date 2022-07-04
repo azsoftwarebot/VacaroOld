@@ -29,7 +29,7 @@
 						warn
 						warnText="Warning, the Vacaro Launcher is still in early development."
 						type="default"
-						style="width: 100%;"
+						style="width: 100%; max-width: 12.25rem;"
 						titleText="Engine Version"
 						selectedId="0"
 						items={[
